@@ -231,11 +231,16 @@ header{
 	letter-spacing: 1px;
 	text-transform: uppercase;
 }
+  
+
 
 .course h2 {
 	letter-spacing: 1px;
 	margin: 10px 0;
 }
+
+
+
 
 .course-preview {
 	background-color: #2A265F;
@@ -348,6 +353,12 @@ header{
   
   }
 
+  /* Kur vendos mausin te card ajo leviz */
+.card:hover {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+
+  
   /*Te pjesa e kartave osht secton e mrena section te kartat butoni */
 #section1 .btn {
     
