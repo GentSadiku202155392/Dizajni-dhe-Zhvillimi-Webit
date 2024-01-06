@@ -78,7 +78,7 @@ $user_data = check_login($con);
            
              <p> Dikush ka nevojë për ju.</p>
                 <br>
-                <a href="DhuruesitPyetsori.html">
+                <a href="DhuruesitPyetsori.php">
             <button class="btn" >Vazhdo</button>
                 </a>
 		</div>
@@ -111,7 +111,7 @@ $user_data = check_login($con);
 
     <!-- card-fotter -->
     <div class="card-footer">
-        <a href="DhuruesitPyetsori.html">
+        <a href="DhuruesitPyetsori.php">
             <button class="btn" >Vazhdo</button>
                 </a>
     </div>
@@ -139,7 +139,7 @@ $user_data = check_login($con);
     <!-- card-body -->
 
     <div class="card-footer">
-        <a href="Kerkogjak.html">
+        <a href="Kerkogjak.php">
             <button class="btn" >Vazhdo</button>
                 </a>
     </div>

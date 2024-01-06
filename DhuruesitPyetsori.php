@@ -1,3 +1,51 @@
+<?php 
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$Emri=$_POST['Emri'];
+		$Mbiemri=$_POST['Mbiemri'];
+    $Nrtelefonit=$_POST['Nrtelefonit'];
+    $Gjinia = $_POST['Gjinia'];
+    $Datelindja = $_POST['Datelindja'];
+    $Kurkenidhuruargjakpërherëtëfundit = $_POST['Kurkenidhuruargjakpërherëtëfundit'];
+    $Akenipërdorurbarna10ditëtefundit = $_POST['Akenipërdorurbarna10ditëtefundit'];
+    $covid_vaksine = $_POST['covid_vaksine'];
+    $GrupiGjakut = $_POST['GrupiGjakut'];
+    $Qyteti= $_POST['Qyteti'];
+
+	
+
+    if( !empty($Emri) && !empty($Mbiemri) )
+		{
+
+			//save to database
+			$user_id = random_num(20);
+			$query = "insert into dhuruesit (Emri,Mbiemri,Nrtelefonit,Gjinia,Datelindja,Kurkenidhuruargjakpërherëtëfundit,Akenipërdorurbarna10ditëtefundit,covid_vaksine,GrupiGjakut,Qyteti) values ('$Emri','$Mbiemri','$Nrtelefonit','$Gjinia','$Datelindja','$Kurkenidhuruargjakpërherëtëfundit','$Akenipërdorurbarna10ditëtefundit','$covid_vaksine','$GrupiGjakut','$Qyteti')";
+
+			mysqli_query ($con, $query);
+
+
+		}
+		else
+		{
+			echo "Please enter some valid information!";
+	   }
+	
+	}
+
+	
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
