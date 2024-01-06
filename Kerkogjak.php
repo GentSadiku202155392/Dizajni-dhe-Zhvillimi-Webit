@@ -1,3 +1,51 @@
+<?php 
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+	$user_data = check_login($con);
+
+ 
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$Emri=$_POST['Emri'];
+		$Mbiemri=$_POST['Mbiemri'];
+    $Nrtelefonit=$_POST['Nrtelefonit'];
+    $Gjinia = $_POST['Gjinia'];
+  $Koha = $_POST ['Koha'];
+    $Grupigjakut = $_POST['Grupigjakut'];
+    $Qyteti= $_POST['Qyteti'];
+
+
+    if( !empty($Emri) && !empty($Mbiemri) )
+		{
+
+			//save to database
+			$user_id = random_num(20);
+			$query = "insert into kerkuesit (Emri,Mbiemri,Nrtelefonit,Gjinia,Koha,Grupigjakut,Qyteti) values ('$Emri','$Mbiemri','$Nrtelefonit','$Gjinia','$Koha','$Grupigjakut','$Qyteti')";
+
+			mysqli_query ($con, $query);
+
+
+		}
+		else
+		{
+			echo "Please enter some valid information!";
+	   }
+	
+	}
+
+	
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

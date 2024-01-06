@@ -67,7 +67,7 @@ session_start();
                    <ul>
                        
                        <li><a href="DhuruesitPyetsori.html" class="link active ">Dhuro Gjak</a></li>
-                       <li><a href="Ballina.html" class="link ">Back</a></li>
+                       <li><a href="Ballina.php" class="link ">Back</a></li>
 
                    </ul>
                </div>
