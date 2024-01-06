@@ -1,3 +1,14 @@
+<?php 
+session_start();
+
+include("connection.php");
+include("functions.php");
+
+$user_data = check_login($con);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,11 +28,11 @@
                </div>
                <div class="nav-menu" id="navMenu">
                    <ul>
-                       <li><a href="ballina.html" class="link active ">Ballina</a></li>
-                       <li><a href="Dhuruesit.html" class="link">Dhuruesit</a></li>
-                       <li><a href="Kerkuesit.html" class="link">Kerkuesit</a></li>
-                       <li><a href="RrethNesh.html" class="link">Rreth Nesh</a></li>
-                       <li><a href="Login-Signup.html" class="link ">Kyçu</a></li>
+                       <li><a href="Ballina.php" class="link active ">Ballina</a></li>
+                       <li><a href="Dhuruesit.php" class="link">Dhuruesit</a></li>
+                       <li><a href="Kerkuesit.php" class="link">Kerkuesit</a></li>
+                       <li><a href="RrethNesh.php" class="link">Rreth Nesh</a></li>
+                       <li><a href="logout.php" class="link ">logout</a></li>
                    </ul>
                </div>
             
@@ -156,7 +167,7 @@ Për çdo nevojë ose arsyje mund të na kontaktoni
 
     <!-- card-footer -->
     <div class="card-footer">
-        <a href="Login-Signup.html">
+        <a href="RrethNesh.html">
             <button class="btn" >Vazhdo</button>
                 </a>
     </div>
