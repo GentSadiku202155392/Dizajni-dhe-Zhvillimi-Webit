@@ -167,7 +167,7 @@ Për çdo nevojë ose arsyje mund të na kontaktoni
 
     <!-- card-footer -->
     <div class="card-footer">
-        <a href="RrethNesh.html">
+        <a href="RrethNesh.php">
             <button class="btn" >Vazhdo</button>
                 </a>
     </div>

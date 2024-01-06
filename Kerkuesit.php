@@ -63,7 +63,7 @@ session_start();
 
               <br>
               <div class="card-footer">
-                <a href="Login-Signup.html">
+                <a href="Kerkogjak.php">
                     <button class="btn" >Vazhdo</button>
                         </a>
             </div>
