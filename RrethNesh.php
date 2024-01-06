@@ -5,6 +5,29 @@ session_start();
 	include("functions.php");
 
 	$user_data = check_login($con);
+    if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$Firstname=$_POST['Firstname'];
+		$Lastname=$_POST['Lastname'];
+		 $Email = $_POST['Email'];
+		$Koment = $_POST['Koment'];
+
+    if( !empty($Firstname) && !empty($Lastname) &&!empty($Email) && !empty($Koment))
+		{
+
+			//save to database
+			$user_id = random_num(20);
+			$query = "insert into kontakt (Firstname,Lastname,Email,Koment) values ('$Firstname','$Lastname','$Email','$Koment')";
+
+			mysqli_query($con, $query);
+        }
+		else
+		{
+			echo "Please enter some valid information!";
+	   }
+	
+	}
 
 ?>
 
@@ -62,24 +85,24 @@ session_start();
             <!-- pjesa dyte -->
             <div class="contact-container" id="contact">
                 <h1>Na Kontaktoni</h1>
-                <form id="contactForm">
+                <form id="contactForm" method="post">
                 <div class="two-forms">
 
                     <div class="input-box">
-                        <input type="text" id="Firstname" class="input-field" placeholder="Emri">
+                        <input type="text" id="Firstname" class="input-field" placeholder="Emri" name="Firstname">
                     </div>
 
                     <div class="input-box">
-                        <input type="text" id="Lastname" class="input-field" placeholder="Mbiemri">
+                        <input type="text" id="Lastname" class="input-field" placeholder="Mbiemri" name="Lastname">
                      </div>
                 </div>
 
                 <div class="input-box">
-                    <input type="text" id="Email" class="input-field" placeholder="Email">
+                    <input type="text" id="Email" class="input-field" placeholder="Email" name="Email">
                 </div>
 
                 <div class="input-box">
-                    <textarea type="text" id="Koment" class="input-field" rows="5" placeholder="Shkruani mesazhin tuaj!"></textarea>
+                    <textarea type="text" id="Koment" class="input-field" rows="5" placeholder="Shkruani mesazhin tuaj!" name="Koment"></textarea>
                 </div>
 
                 <div class="input-box">
@@ -132,80 +155,6 @@ window.addEventListener('scroll', function() {
 }, false);
 
 /*==========================================================================*/
-   ////////// per Kontakt Form
-
-   document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-
-    // i merr vlerat qe shtyp user
-    const Firstname = document.getElementById('Firstname').value;
-    const Lastname = document.getElementById('Lastname').value;
-    const Email = document.getElementById('Email').value;
-    const Koment = document.getElementById('Koment').value;
-
-    // validimi i inputeve
-    if (!isValidFirstname(Firstname)) {
-        alert('Emri është shkruar gabimë');
-        return;
-    }
-
-    if (!isValidLastname(Lastname)) {
-        alert('Mbiemri është shkruar gabimë');
-        return;
-    }
-
-    if (!isValidEmail(Email)) {
-        alert('Email është shkruar gabimë.');
-        return;
-    }
-    if (!isValidKoment(Koment)) {
-        alert('Komenti nuk është plotësuar mir');
-        return;
-    }
-
- 
-          // Nese validimi eshte bere me sukses atëher e bon alert mesazhin posht
-         alert('Validimi është bërë me sukses!');
-});
-
-// Kushtet e validimit
-function isValidFirstname(Firstname) {
-
-    return /^[A-Z]/.test(Firstname);
-}
-const Firstname = Firstname; 
-if (isValidFirstname(Firstname)) {
-    console.log("Valid name"); // Nese emri fillon me leter te madhe
-} else {
-    console.log("Invalid name"); // Nese nuk fillon me leter te madhe
-
-}
-function isValidLastname(Lastname) {
-    // Emri nuk duhet me kan i zbrazet
-
-    return /^[A-Z]/.test(Lastname);
-}
-const inputLastname = Lastname
-
-if (isValidLastname(Lastname)) {
-    console.log("Valid Lastname"); //Nese Mbiemri fillon me leter te madhe
-} else {
-    console.log("Invalid Lastname"); // Nese Mbiemri fillon me leter te madhe
-}
-function isValidEmail(Email) {
-    
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(Email);
-}
-function isValidKoment(Koment) {
-
-return /^[A-Z]/.test(Koment);
-}
-
-
-          
-   
-
-         </script>
-     
+  </script>
 </body>
 </html>
