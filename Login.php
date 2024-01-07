@@ -114,7 +114,6 @@ session_start();
                 </div>
             </div>
         </div>
-        <!------------------- Pjesa Per Regjistrim-------------------------->
        
             </form>
             
