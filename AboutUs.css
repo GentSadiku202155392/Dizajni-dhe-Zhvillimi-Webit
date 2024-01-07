@@ -271,5 +271,46 @@ header{
     }
 
 }
+  
+  .slider {
+    width: 40%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+}
 
+.images {
+    width: 400%;
+    display: flex;
+    transition: transform 0.5s ease;
+   
+}
 
+.images img {
+    width: 25%;
+    border-radius: 10%;
+}
+
+.dots {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dots label {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #00a761;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.dots label:hover {
+    background-color: #910000;
+}
+
+.dots label.active {
+    background-color: #f40000;
+}
