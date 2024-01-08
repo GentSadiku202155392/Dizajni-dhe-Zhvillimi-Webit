@@ -1,12 +1,18 @@
 <?php 
+$hide="";
 session_start();
-
 include("connection.php");
-include("functions.php");
+	include("functions.php");
+  $user_data = check_login($con);
 
-$user_data = check_login($con);
+  $hide_dashboard = true;
 
-?>
+// me bo check a ka bo log in user apo admin based on the role 
+if(isset($_SESSION['user_id']) && $user_data['Role'] === 'admin') {
+    // nese admini ka bo log in mos me bo hide dashboard
+    $hide_dashboard = false;
+}
+		?>
 
 
 <!DOCTYPE html>
@@ -32,6 +38,12 @@ $user_data = check_login($con);
                        <li><a href="Dhuruesit.php" class="link">Dhuruesit</a></li>
                        <li><a href="Kerkuesit.php" class="link">Kerkuesit</a></li>
                        <li><a href="RrethNesh.php" class="link">Rreth Nesh</a></li>
+                       <?php
+                // php me bo hide Dashboard nese User log in
+                if(!$hide_dashboard) {
+                    echo '<li><a href="dashboard.php" class="link">Dashboard</a></li>';
+                }
+            ?>
                        <li><a href="logout.php" class="link ">logout</a></li>
                    </ul>
                </div>
@@ -188,7 +200,7 @@ Për çdo nevojë ose arsyje mund të na kontaktoni
           </footer>
 
 
-        <script>
+<script>
    
             function myMenuFunction() {
              var i = document.getElementById("navMenu");
