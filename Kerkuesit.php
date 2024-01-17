@@ -1,11 +1,16 @@
-<?php 
+<?php
 session_start();
 
-	include("connection.php");
-	include("functions.php");
+include("connection.php");
+include("functions.php");
 
-	$user_data = check_login($con);
+$user_data = check_login($con);
 
+// Write the query to get data from kerkuesit table
+$sql = "SELECT * FROM kerkuesit";
+
+// Execute the query
+$result = $con->query($sql);
 ?>
 
 
@@ -78,169 +83,29 @@ session_start();
 
 <!---------------------------------------------->
 <section id="section1">
-<div class="container">
-<div class="card card-1">
-
-    <!-- card-header -->
-    <div class="card-header">
-      <img src="Foto/Dhuruesi1.jpg" class="card-img" />
-    </div>
-    
-    <!------->
-
-    <!-- card-body -->
-    <div class="card-body">
-      
-      <h3 class="card-title">Emri-Mbiemri</h3>
-      <p class="card-text">
-         Grupi Gjakut: -- <br><br>
-         Qyteti: Gjilan <br><br>
-         Data : ----- <br><br>
-         Nr-Telefonit: 044-444-333
-
-      </p>
-    </div>
-   
-  
-  </div>
-  <!-- Card 1 -->
-
-
-  <!-- Card 2 -->
-  <div class="card card-2">
-    <!-- card-header -->
-    <div class="card-header">
-      <img src="Foto/Dhuruesi2.jpg" class="card-img" />
-    </div>
-    <!-- card-header -->
-
-    <!-- card-body -->
-    <div class="card-body">
-     
-        <h3 class="card-title">Emri-Mbiemri</h3>
-        <p class="card-text">
-           Grupi Gjakut: -- <br><br>
-           Qyteti: Gjilan <br><br>
-           Data : ----- <br><br>
-           Nr-Telefonit: 044-444-333
-  
-        </p>
-    </div>
-    <!-- card-body -->
-
-  
-   
-  </div>
-  <!-- Card 2 -->
-
-  <!-- Card 3 -->
-  <div class="card card-3">
-    <!-- card-header -->
-    <div class="card-header">
-      <img src="Foto/Dhuruesi3.jpg" class="card-img" />
-    </div>
-    <!-- card-header -->
-
-    <!-- card-body -->
-    <div class="card-body">
-     
-        <h3 class="card-title">Emri-Mbiemri</h3>
-        <p class="card-text">
-           Grupi Gjakut: -- <br><br>
-           Qyteti: Gjilan <br><br>
-           Data : ----- <br><br>
-           Nr-Telefonit: 044-444-333
-  
-        </p>
-    </div>
-    <!-- card-body -->
-
-   
-  
-    <!-- card-footer -->
-  </div>
-</div>
-</section>
-
-<section id="section1">
-    <div class="container">
-    <div class="card card-1">
-    
-        <!-- card-header -->
-        <div class="card-header">
-          <img src="Foto/Dhuruesi4.jpg" class="card-img" />
+        <div class="container">
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="card">';
+                    echo '<div class="card-header">';
+                    echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" class="card-img" />';
+                    echo '</div>';
+                    echo '<div class="card-body">';
+                    echo '<h2 class="card-title">' . $row['Emri'] . ' ' . $row['Mbiemri'] . '</h2>';
+                    echo '<p class="card-text">';
+                    echo 'Nr-Telefonit: ' . $row['Nrtelefonit'] . '<br>','<br>';
+                    echo 'Grupi-Gjakut: ' . $row['Grupigjakut'] . '<br>','<br>';
+                    echo 'Qyteti: ' . $row['Qyteti'] . '<br>';
+                    echo '</p>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            }
+            ?>
         </div>
-        
-        <!------->
-    
-        <!-- card-body -->
-        <div class="card-body">
-          
-            <h3 class="card-title">Emri-Mbiemri</h3>
-            <p class="card-text">
-               Grupi Gjakut: -- <br><br>
-               Qyteti: Gjilan <br><br>
-               Data : ----- <br><br>
-               Nr-Telefonit: 044-444-333
-      
-            </p>
-        </div>
-     
-       
-      </div>
-   
-    
-    
-      <!-- Card 2 -->
-      <div class="card card-2">
-        <!-- card-header -->
-        <div class="card-header">
-          <img src="Foto/Dhuruesi5.jpg" class="card-img" />
-        </div>
-        <!-- card-header -->
-    
-        <!-- card-body -->
-        <div class="card-body">
-         
-            <h3 class="card-title">Emri-Mbiemri</h3>
-            <p class="card-text">
-               Grupi Gjakut: -- <br><br>
-               Qyteti: Gjilan <br><br>
-               Data : ----- <br><br>
-               Nr-Telefonit: 044-444-333
-      
-            </p>
-        </div>
-        <!-- card-body -->
-      </div>
-      <!-- Card 2 -->
-    
-      
-      <!-- Card 3 -->
-      <div class="card card-3">
-        <!-- card-header -->
-        <div class="card-header">
-          <img src="Foto/Dhuruesi6.jpg" class="card-img" />
-        </div>
-        <!-- card-header -->
-    
-        <!-- card-body -->
-        <div class="card-body">
-         
-            <h3 class="card-title">Emri-Mbiemri</h3>
-            <p class="card-text">
-               Grupi Gjakut: -- <br><br>
-               Qyteti: Gjilan <br><br>
-               Data : ----- <br><br>
-               Nr-Telefonit: 044-444-333
-      
-            </p>
-        </div>
-        <!-- card-body -->
-  
-      </div>
-    </div>
     </section>
+
 <!------------------------------------------------------------------------------->
           <footer class="footer">
             <div class="container">
