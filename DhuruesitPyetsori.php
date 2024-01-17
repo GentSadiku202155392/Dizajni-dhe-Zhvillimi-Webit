@@ -11,14 +11,9 @@ session_start();
 		$Emri=$_POST['Emri'];
 		$Mbiemri=$_POST['Mbiemri'];
     $Nrtelefonit=$_POST['Nrtelefonit'];
-    $Gjinia = $_POST['Gjinia'];
-    $Datelindja = $_POST['Datelindja'];
-    $Kurkenidhuruargjakpërherëtëfundit = $_POST['Kurkenidhuruargjakpërherëtëfundit'];
-    $Akenipërdorurbarna10ditëtefundit = $_POST['Akenipërdorurbarna10ditëtefundit'];
-    $covid_vaksine = $_POST['covid_vaksine'];
     $GrupiGjakut = $_POST['GrupiGjakut'];
     $Qyteti= $_POST['Qyteti'];
-
+    $image= $_POST['image'];
 	
 
     if( !empty($Emri) && !empty($Mbiemri) )
@@ -26,7 +21,7 @@ session_start();
 
 			//save to database
 			$user_id = random_num(20);
-			$query = "insert into dhuruesit (Emri,Mbiemri,Nrtelefonit,Gjinia,Datelindja,Kurkenidhuruargjakpërherëtëfundit,Akenipërdorurbarna10ditëtefundit,covid_vaksine,GrupiGjakut,Qyteti) values ('$Emri','$Mbiemri','$Nrtelefonit','$Gjinia','$Datelindja','$Kurkenidhuruargjakpërherëtëfundit','$Akenipërdorurbarna10ditëtefundit','$covid_vaksine','$GrupiGjakut','$Qyteti')";
+			$query = "insert into dhuruesit (Emri,Mbiemri,Nrtelefonit,GrupiGjakut,Qyteti) values ('$Emri','$Mbiemri','$Nrtelefonit','$GrupiGjakut','$Qyteti')";
 
 			mysqli_query ($con, $query);
 
@@ -87,8 +82,7 @@ session_start();
 <!----------------------------------------------------------------------->
 
 <div class="form" id="Dhuro-form">
-<form  method="post">
-
+<form action="proces_formdhuruesit.php" method="post" enctype="multipart/form-data">
     
     <label for="Emri" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Emri</label> &nbsp;
     <input type="text" id="Femri" name="Emri" placeholder="Emri.." border-radius="30"> 
@@ -105,33 +99,7 @@ session_start();
     <br>
     <br>
     <div>
-    <label for="Gjinia">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gjinia:</label> &nbsp; &nbsp;
-       
-                     <input id="Gjinia" type="radio" name="Gjinia" value="Mashkull"> Mashkull  &nbsp;
-                    <input  id="Gjinia" type="radio" name="Gjinia" value="Femer"> Fem&euml;r 
-      <br>
-      <br>
-      <label for="Datelindja">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Datelindja:</label> &nbsp;
-      <input id="Datelindja" type="date"  name="Datelindja"><br>
-      <br>
-      
-      <label for="Kurkenidhuruargjakpërherëtëfundit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kur keni dhuruar gjak p&euml;r her&euml; t&euml; fundit?</label>  &nbsp;
-        <input type="date" id="Kurkenidhuruargjakpërherëtëfundit" name="Kurkenidhuruargjakpërherëtëfundit"><br>
-      <br>
-    
-
-
-      <label for="fbarna">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A keni p&euml;rdorur barna 10 dit&euml;t e fundit?</label> &nbsp; &nbsp;
-       
-                     <input type="radio" name="Akenipërdorurbarna10ditëtefundit" value="PO"> PO  &nbsp;
-                    <input type="radio" name="Akenipërdorurbarna10ditëtefundit" value="JO"> JO
-                    <br>
-                    <br>
-                    <label for="VAKSINA">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A jeni vaksinuar kunder COVID-19?</label> &nbsp; &nbsp;
-                      <input type="radio" name="covid_vaksine" value="PO"> PO  &nbsp;
-                    <input type="radio" name="covid_vaksine" value="JO"> JO
-      <br>
-       <br>
+        
                     
                     <label for="GrupiGjakut">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cakto grupin e gjakut</label>
        
@@ -166,10 +134,14 @@ session_start();
     </select>
 </div>
   <br>
+  
+     Image: <input type="file" name="image" accept="image/*" required><br>
+  <br>
   <br>
   <div class="card-footer">
     <a href="#">
-         <button class="btn" >Dergo</button>
+        
+         <button  type="submit" name="upload">Dergo</button>
             </a>
 </div>
   
