@@ -1,33 +1,40 @@
 <?php 
 session_start();
 
-include("connection.php");
+	include("connection.php");
+	include("functions.php");
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-  
-    $Emri = $_POST['Emri'];
-    $Mbiemri = $_POST['Mbiemri'];
-    $Nrtelefonit = $_POST['Nrtelefonit'];
-    $Gjinia = $_POST['Gjinia'];
-    $Koha = $_POST['Koha'];
-    $GrupiGjakut = $_POST['GrupiGjakut'];
-    $Qyteti = $_POST['Qyteti'];
-    
 
-    if (!empty($Emri) && !empty($Mbiemri) && !empty($Nrtelefonit)&& !empty($Gjinia)
-     && !empty($Koha)  && !empty($GrupiGjakut) && !empty($Qyteti)  && !is_numeric($Emri)) {
-        // save to database
-        $query = "INSERT INTO kerkuesit (Emri, Mbiemri, Nrtelefonit, Gjinia,Koha,GrupiGjakut,Qyteti) 
-        VALUES ('$Emri','$Mbiemri','$Nrtelefonit','$Gjinia','$Koha',  '$GrupiGjakut' , '$Qyteti')";
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$Emri=$_POST['Emri'];
+		$Mbiemri=$_POST['Mbiemri'];
+    $Nrtelefonit=$_POST['Nrtelefonit'];
+    $Grupigjakut = $_POST['Grupigjakut'];
+    $Qyteti= $_POST['Qyteti'];
+    $image= $_POST['image'];
+	
+   
+    if( !empty($Emri) && !empty($Mbiemri) )
+		{
 
-        mysqli_query($con, $query);
+			//save to database
+			$user_id = random_num(20);
+			$query = "insert into dhuruesit (Emri,Mbiemri,Nrtelefonit,Grupigjakut,Qyteti) values ('$Emri','$Mbiemri','$Nrtelefonit','$Grupigjakut','$Qyteti')";
 
-        header("Location: Dashboard-Dhuruesit.php");
-        die;
-    } else {
-        echo "Please enter some valid information!";
-    }
-}
+			mysqli_query ($con, $query);
+
+
+		}
+		else
+		{
+			echo "Please enter some valid information!";
+	   }
+	
+	}
+
+	
 ?>
 
 <!DOCTYPE html>
@@ -51,10 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </head>
 <body>
 
-<h2>Shto Kerkues Gjakau   <li><a href="Dashboard-Kerkuesit.php" class="link " style="color:White;">Back</a></li></h2></h2>
+<h2>Shto Kerkues  <li><a href="Dashboard-Kerkuesit.php" class="link " style="color:White;">Back</a></li></h2></h2>
 
 
-<form action="" method="POST">
+<form action="process_formkerkuesit.php" method="post" enctype="multipart/form-data">
+    
     <fieldset>
         <legend>Infromatat personale:</legend>
         <label for="Emri" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Emri</label> &nbsp;
@@ -72,27 +80,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <br>
     <br>
     <div>
-    <label for="Gjinia">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gjinia:</label> &nbsp; &nbsp;
-       
-                     <input id="Gjinia" type="radio" name="Gjinia" value="Mashkull"> Mashkull  &nbsp;
-                    <input  id="Gjinia" type="radio" name="Gjinia" value="Femer"> Fem&euml;r 
-      <br>
-      <br>
-      <label for="Koha">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Koha kur Nevojitet gjaku:</label> &nbsp;
-      <input id="Koha" type="date"  name="Koha"><br>
-      <br>
-      
-    
+   
                     
-                    <label for="GrupiGjakut">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cakto grupin e gjakut</label>
+                    <label for="Grupigjakut">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cakto grupin e gjakut</label>
        
-                     <input type="radio" name="GrupiGjakut" value="A-"> A- &nbsp;
-                    <input type="radio" name="GrupiGjakut" value="B+"> B+  &nbsp;
-                    <input type="radio" name="GrupiGjakut" value="B-"> B-   &nbsp;
-                    <input type="radio" name="GrupiGjakut" value="AB+"> AB+   &nbsp;
-                    <input type="radio" name="GrupiGjakut" value="AB-"> AB-   &nbsp;
-                    <input type="radio" name="GrupiGjakut" value="0+"> 0+  &nbsp;  
-                    <input type="radio" name="GrupiGjakut" value="0-"> 0-   
+                     <input type="radio" name="Grupigjakut" value="A-"> A- &nbsp;
+                    <input type="radio" name="Grupigjakut" value="B+"> B+  &nbsp;
+                    <input type="radio" name="Grupigjakut" value="B-"> B-   &nbsp;
+                    <input type="radio" name="Grupigjakut" value="AB+"> AB+   &nbsp;
+                    <input type="radio" name="Grupigjakut" value="AB-"> AB-   &nbsp;
+                    <input type="radio" name="Grupigjakut" value="0+"> 0+  &nbsp;  
+                    <input type="radio" name="Grupigjakut" value="0-"> 0-   
 
 
       <br>
@@ -117,7 +115,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     </select>
     <br>
             <br>
-        <input type="submit" name="submit" value="Shto Kerkuesin">
+            Image: <input type="file" name="image" accept="image/*" required><br>
+  <br>
+  <br>
+  <button  type="submit" name="upload">Dergo</button>
     </fieldset>
 </form>
 

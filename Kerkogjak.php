@@ -4,27 +4,24 @@ session_start();
 	include("connection.php");
 	include("functions.php");
 
-	$user_data = check_login($con);
 
- 
 	if($_SERVER['REQUEST_METHOD'] == "POST")
 	{
 		//something was posted
 		$Emri=$_POST['Emri'];
 		$Mbiemri=$_POST['Mbiemri'];
     $Nrtelefonit=$_POST['Nrtelefonit'];
-    $Gjinia = $_POST['Gjinia'];
-  $Koha = $_POST ['Koha'];
-    $Grupigjakut = $_POST['Grupigjakut'];
+    $GrupiGjakut = $_POST['GrupiGjakut'];
     $Qyteti= $_POST['Qyteti'];
-
+    $image= $_POST['image'];
+	
 
     if( !empty($Emri) && !empty($Mbiemri) )
 		{
 
 			//save to database
 			$user_id = random_num(20);
-			$query = "insert into kerkuesit (Emri,Mbiemri,Nrtelefonit,Gjinia,Koha,Grupigjakut,Qyteti) values ('$Emri','$Mbiemri','$Nrtelefonit','$Gjinia','$Koha','$Grupigjakut','$Qyteti')";
+			$query = "insert into dhuruesit (Emri,Mbiemri,Nrtelefonit,GrupiGjakut,Qyteti) values ('$Emri','$Mbiemri','$Nrtelefonit','$GrupiGjakut','$Qyteti')";
 
 			mysqli_query ($con, $query);
 
@@ -38,7 +35,6 @@ session_start();
 	}
 
 	
-
 ?>
 
 
@@ -66,7 +62,7 @@ session_start();
                <div class="nav-menu" id="navMenu">
                    <ul>
                        
-                       <li><a href="DhuruesitPyetsori.html" class="link active ">Kerko Gjak</a></li>
+                       <li><a href="Kerkogjak.php" class="link active ">Kerko Gjak</a></li>
                        <li><a href="Ballina.php" class="link ">Back</a></li>
 
                    </ul>
@@ -87,37 +83,26 @@ session_start();
 <!----------------------------------------------------------------------->
 
 <div class="form" id="kerko-form">
-<form  method="post">
-
+<form action="process_formkerkuesit.php" method="post" enctype="multipart/form-data">
     
-    <label for="Emri" >Emri</label> &nbsp;
-    <input type="text" id="fname" name="Emri" placeholder="Emri.."> 
+    <label for="Emri" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Emri</label> &nbsp;
+    <input type="text" id="Femri" name="Emri" placeholder="Emri.." border-radius="30"> 
     <br>
     <br>
 
-    <label for="Mbiemri">Mbiemri</label> &nbsp;
-    <input type="text" id="lname" name="Mbiemri" placeholder="Mbiemri..">
+    <label for="Mbiemri">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mbiemri</label> &nbsp;
+    <input type="text" id="LMbiemri" name="Mbiemri" placeholder="Mbiemri..">
 
     <br>
     <br>
-    <label for="Nrtelefonit">Nr telefonit</label> &nbsp;
-    <input type="text" id="lname" name="Nrtelefonit" placeholder="Nr telefonit..">
+    <label for="Nrtelefonit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nr telefonit</label> &nbsp;
+    <input type="text" id="	Nrtelefonit" name="Nrtelefonit" placeholder="Nr telefonit..">
     <br>
     <br>
-    <label for="Gjinia">Gjinia:</label> &nbsp; &nbsp;
-       
-                     <input type="radio" name="Gjinia" value="Mashkull"> Mashkull  &nbsp;
-                    <input type="radio" name="Gjinia" value="Femer"> Fem&euml;r
-      <br>
-      <br>
-      <label for="Koha">Afati kohor:</label> &nbsp;
-      <input type="date" id="Koha" name="Koha"><br>
-      <br>
-      
-     
-   
-                  
-   <label for="fname">Cakto grupin e gjakut q&euml; t&euml; duhet:</label>
+    <div>
+        
+                    
+                    <label for="GrupiGjakut">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cakto grupin e gjakut</label>
        
                      <input type="radio" name="Grupigjakut" value="A-"> A- &nbsp;
                     <input type="radio" name="Grupigjakut" value="B+"> B+  &nbsp;
@@ -126,12 +111,13 @@ session_start();
                     <input type="radio" name="Grupigjakut" value="AB-"> AB-   &nbsp;
                     <input type="radio" name="Grupigjakut" value="0+"> 0+  &nbsp;  
                     <input type="radio" name="Grupigjakut" value="0-"> 0-   
-                    
+
+
       <br>
       <br>
 
-      
-    <label for="country">Vendndodhja</label>
+
+    <label for="country">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qyteti</label>
     <select id="qyteti" name="Qyteti">
       <option value="none">Zgjedh Qytetin</option> 
       <option value="Gjilan">Gjilan</option>
@@ -146,15 +132,17 @@ session_start();
       <option value="Deçan">Deçan</option>
       <option value="Suharek&euml;">Suharek&euml;</option>
       <option value="Podujev">Podujev</option>
-    
-  
     </select>
-
+</div>
+  <br>
+  
+     Image: <input type="file" name="image" accept="image/*" required><br>
   <br>
   <br>
   <div class="card-footer">
     <a href="#">
-         <button class="btn" >Dergo</button>
+        
+         <button  type="submit" name="upload">Dergo</button>
             </a>
 </div>
   
