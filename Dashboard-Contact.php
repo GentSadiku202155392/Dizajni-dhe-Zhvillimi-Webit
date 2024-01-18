@@ -1,5 +1,6 @@
 <?php 
 include "connection.php";
+include("functions.php");
 
 //write the query to get data from users table
 

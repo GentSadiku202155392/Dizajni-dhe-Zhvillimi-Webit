@@ -1,5 +1,6 @@
 <?php 
 include "connection.php";
+include("functions.php");
 
 // if the form's update button is clicked, we need to process the form
 	if (isset($_POST['update'])) {
