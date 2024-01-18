@@ -4,4 +4,6 @@ Jame duke zhvilluar nje projekt me temën:"Dhuro Gjak" ne kuader te lendes dizaj
 
 
 
-last push on git 01.17.2024 Finished the project 
+last push on git 01.18.2024 Finished the project 
+
+project finished on 01.18.2024 -Gent Sadiku
