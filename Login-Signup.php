@@ -111,8 +111,7 @@ session_start();
                 
             </div>
         </div>
-        <!------------------- Pjesa Per Regjistrim-------------------------->
-        
+      
 <!-----   pjesa e javascript per meny (navbar)  -->
 <script>
    

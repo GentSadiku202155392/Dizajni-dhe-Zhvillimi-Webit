@@ -70,7 +70,7 @@ $image = $_FILES['image']['tmp_name'];
 		//display success message
 			echo "<script>
          setTimeout(function(){
-            window.location.href = 'Dashboard-Kerkuesit.php';
+            window.location.href = 'Kerkuesit.php';
          }, 5000);
       </script>";
 		 echo"<p><b>   E dhena eshte duke u regjistruar ne sistem. Ju lutem pritni 5 sekonda. <b></p>";
